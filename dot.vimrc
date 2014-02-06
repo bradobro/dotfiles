@@ -3,6 +3,9 @@ filetype off
 
 let mapleader = ","
 
+"---- Exclude things from CtrlP and others when searching
+set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 

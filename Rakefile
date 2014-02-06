@@ -7,5 +7,6 @@ task :install do
   files = Dir['*'] - ignore_files
   system %Q{ln -sfF "$PWD/dot.vim" "$HOME/.vim"}
   system %Q{ln -sf "$PWD/dot.vimrc" "$HOME/.vimrc"}
+  system %Q{ln -sf "$PWD/dot.pryrc" "$HOME/.pryrc"}
   system %Q{ln -sf "$PWD/dot.tmux.conf" "$HOME/.tmux.conf"}
 end
