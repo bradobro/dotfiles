@@ -1,6 +1,9 @@
 set nocompatible
 filetype off
 
+" reload .vimrc
+map <Leader>vrc :so $MYVIMRC<CR>
+
 let mapleader = ","
 
 "---- Exclude things from CtrlP and others when searching
@@ -94,5 +97,6 @@ map <Leader>sc :RScontroller
 map <Leader>sv :RSview 
 map <Leader>su :RSunittest 
 map <Leader>sf :RSfunctionaltest 
+
 
 filetype plugin indent on
