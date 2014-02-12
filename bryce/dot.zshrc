@@ -11,6 +11,7 @@ DEFAULT_USER=""
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias gh="cd ~/Github"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -30,7 +31,7 @@ DEFAULT_USER=""
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(rails git brew bundler gem github heroku osx gem github npm osx web-search)
+plugins=(rails git brew bundler gem github heroku osx gem github npm osx web-search rvm)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.bin/tmuxinator.zsh
@@ -47,9 +48,13 @@ alias subl='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-export RBENV_ROOT=/usr/local/var/rbenv
+# export RBENV_ROOT=/usr/local/var/rbenv
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+### rbenv
+#export PATH="$HOME/.rbenv/bin:$PATH"
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
   export TERM='xterm-256color'
@@ -58,6 +63,11 @@ else
 fi
 
 # system-wide environment settings for zsh(1)
-if [ -x /usr/libexec/path_helper ]; then
-  eval `/usr/libexec/path_helper -s`
-fi
+#if [ -x /usr/libexec/path_helper ]; then
+#  eval `/usr/libexec/path_helper -s`
+#fi
+
+
+### rvm
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
