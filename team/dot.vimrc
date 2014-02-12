@@ -6,21 +6,6 @@ set foldmethod=syntax
 nnoremap <silent> <Space> za
 nnoremap <silent> <F8> zM
 nnoremap <silent> <F9> zR
-"---------resizing splits----------------------------------------------------
-noremap = <esc><C-w>>
-    " = increase size of vertically split window  
-noremap - <esc><C-w><
-    " - decrease size of vertically split window  
-noremap + <esc><C-w>+
-    " + increase size of horizontally split window  
-noremap _ <esc><C-w>-
-    " _ decrease size of horizontally split window  
-
-
-noremap <F1> <nop>
-inoremap <F1> <nop>
-    " disable the F1 help key because I hit it when trying to hit escape
-
 
 " reload .vimrc
 map <Leader>vrc :so $MYVIMRC<CR>
@@ -118,6 +103,5 @@ map <Leader>sc :RScontroller
 map <Leader>sv :RSview 
 map <Leader>su :RSunittest 
 map <Leader>sf :RSfunctionaltest 
-
 
 filetype plugin indent on
