@@ -1,14 +1,11 @@
-[user]
-	name = Brad Olson
-	email = brado@movedbylight.com
 [alias]
 	st = status
 	ci = commit
-        co = checkout
-        br = branch
-        fe = fetch -v
+  co = checkout
+  br = branch
+  fe = fetch -v
 	di = diff
-        graph = log --oneline --graph
+  graph = log --oneline --graph
 	bra = branch -a
 	dino = diff --name-only
 	pruno = remote prune origin
@@ -25,7 +22,7 @@
 	ui = true
 [core]
 	quotepath = false
-	excludesfile = /Users/brado/.gitignore
+	excludesfile = ~/.gitignore
 	editor = vim --noplugin
 [push]
 	default = current
