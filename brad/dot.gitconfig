@@ -1,6 +1,5 @@
-[user]
-	name = Brad Olson
-	email = brado@movedbylight.com
+[include]
+  path = ~/.gitconfig_user
 [alias]
 	st = status
 	ci = commit
