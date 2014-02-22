@@ -1,42 +1,36 @@
 set nocompatible
 filetype off
 
-set scrolloff=8
-set foldmethod=syntax
-nnoremap <silent> <Space> za
-nnoremap <silent> <F8> zM
-nnoremap <silent> <F9> zR
 
+let mapleader = ","
 " reload .vimrc
 map <Leader>vrc :so $MYVIMRC<CR>
 
-let mapleader = ","
-
-"---- Exclude things from CtrlP and others when searching
-set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*
-
+"---- set up vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
-"----let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
 "----my bundles here:
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'Raimondi/delimitMate'
 Bundle 'bling/vim-airline'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'chriskempson/base16-vim'
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
+Bundle 'kana/vim-textobj-user'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'pangloss/vim-javascript'
+Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'tomtom/tlib_vim'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'tomtom/tlib_vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
@@ -47,19 +41,22 @@ Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-ruby/vim-ruby'
 
-set t_Co=256
-
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set number
-set showcmd
 set autoindent
+set expandtab
+set nowrap
+set number
+set shiftwidth=2
+set showcmd
 set smartcase       " Case insensitive searches become sensitive with capitals
 set smarttab        " sw at the start of the line, sts everywhere else
+set t_Co=256
+set tabstop=2
 set visualbell
-set nowrap
+set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*
  
+"#ejs
+au BufNewFile,BufRead *.ejs set filetype=html
+
 let g:airline_powerline_fonts = 1
 let g:airline_theme             = 'bubblegum'
 "let g:airline_enable_branch     = 1
@@ -73,11 +70,16 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
+nnoremap <leader>. :CtrlPTag<cr>
 
-" map <C-n> :NERDTreeToggle<CR>
+" nerdtree
+map <C-0> :NERDTreeToggle<CR>
+
+" shortcuts for esc
 :imap jj <Esc>
 :imap jk <Esc>
 
+" tab shortcuts
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
 nnoremap tk  :tabprev<CR>
@@ -103,5 +105,14 @@ map <Leader>sc :RScontroller
 map <Leader>sv :RSview 
 map <Leader>su :RSunittest 
 map <Leader>sf :RSfunctionaltest 
+
+" shortcuts for ctags
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+nmap <Leader>b :TagbarToggle<CR>
+
+"autocmd FileType javascript inoremap {<CR> {<CR>}<Esc><S-o>
+"autocmd FileType javascript inoremap (; ();<Esc>hi
 
 filetype plugin indent on
