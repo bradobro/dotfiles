@@ -1,4 +1,3 @@
-#Rakefile to install and update configuration for vim, tmux, and shell
 
 ignore_files = %w(Rakefile README.md .gitignore)
 
@@ -15,7 +14,13 @@ task :install, [:user] do |t, args|
     destination = source.gsub(/^\w+/,'$HOME')  #rebase to ~
     destination.gsub!(/dot\./,'.') # transform 'dot.' to '.'
     # Link symbolic, no-follow-dir, verbose, force replace file, force replace dir
-    cmd =  %Q{ln -shvfF "$PWD/#{source}" "#{destination}"}
+    #require 'pry'; binding.pry
+    case RUBY_PLATFORM
+    when /^.*darwin.*$/
+      cmd =  %Q{ln -shvfF "$PWD/#{source}" "#{destination}"}
+    when /linux$/
+      cmd =  %Q{ln -snvfF "$PWD/#{source}" "#{destination}"}
+    end
     system cmd
   end
 
