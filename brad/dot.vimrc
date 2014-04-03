@@ -1,20 +1,22 @@
 set nocompatible
 filetype off
 
-set scrolloff=8
+" set scrolloff=8
 set foldmethod=syntax
+set nofoldenable
+
 nnoremap <silent> <Space> za
 nnoremap <silent> <F8> zM
 nnoremap <silent> <F9> zR
 "---------resizing splits----------------------------------------------------
 noremap = <esc><C-w>>
-    " = increase size of vertically split window  
+    " = increase size of vertically split window
 noremap - <esc><C-w><
-    " - decrease size of vertically split window  
+    " - decrease size of vertically split window
 noremap + <esc><C-w>+
-    " + increase size of horizontally split window  
+    " + increase size of horizontally split window
 noremap _ <esc><C-w>-
-    " _ decrease size of horizontally split window  
+    " _ decrease size of horizontally split window
 
 
 noremap <F1> <nop>
@@ -23,7 +25,7 @@ inoremap <F1> <nop>
 
 
 " reload .vimrc
-map <Leader>vrc :so $MYVIMRC<CR>
+noremap <Leader>vrc :so $MYVIMRC<CR>
 
 let mapleader = ","
 
@@ -35,6 +37,10 @@ call vundle#rc()
 
 "----let Vundle manage Vundle
 Bundle 'gmarik/vundle'
+
+"----my experimental bundles
+"Bundle 'Lokaltog/vim-easymotion'
+Bundle 'altercation/vim-colors-solarized'
 
 "----my bundles here:
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -50,14 +56,13 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'tomtom/tlib_vim'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'tomtom/tlib_vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rails'
-" Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-ruby/vim-ruby'
@@ -74,7 +79,10 @@ set smartcase       " Case insensitive searches become sensitive with capitals
 set smarttab        " sw at the start of the line, sts everywhere else
 set visualbell
 set nowrap
- 
+
+set background=dark
+colorscheme solarized
+
 let g:airline_powerline_fonts = 1
 let g:airline_theme             = 'bubblegum'
 "let g:airline_enable_branch     = 1
@@ -103,21 +111,22 @@ nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
 " Leader shortcuts for Rails commands
-map <Leader>m :Rmodel 
-map <Leader>c :Rcontroller 
-map <Leader>v :Rview 
-map <Leader>u :Runittest 
-map <Leader>f :Rfunctionaltest 
-map <Leader>tm :RTmodel 
-map <Leader>tc :RTcontroller 
-map <Leader>tv :RTview 
-map <Leader>tu :RTunittest 
-map <Leader>tf :RTfunctionaltest 
-map <Leader>sm :RSmodel 
-map <Leader>sc :RScontroller 
-map <Leader>sv :RSview 
-map <Leader>su :RSunittest 
-map <Leader>sf :RSfunctionaltest 
+noremap <Leader>m :Rmodel
+noremap <Leader>c :Rcontroller
+noremap <Leader>v :Rview
+noremap <Leader>u :Runittest
+noremap <Leader>f :Rfunctionaltest
+noremap <Leader>tm :RTmodel
+noremap <Leader>tc :RTcontroller
+noremap <Leader>tv :RTview
+noremap <Leader>tu :RTunittest
+noremap <Leader>tf :RTfunctionaltest
+noremap <Leader>sm :RSmodel
+noremap <Leader>sc :RScontroller
+noremap <Leader>sv :RSview
+noremap <Leader>su :RSunittest
+noremap <Leader>sf :RSfunctionaltest
 
+noremap <Leader>fws :FixWhitespace
 
 filetype plugin indent on
