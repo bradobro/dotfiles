@@ -38,22 +38,27 @@ call vundle#rc()
 "----let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-"----my experimental bundles
+"----our experimental bundles
+
 " Bundle 'Lokaltog/vim-easymotion'
 " Bundle 'altercation/vim-colors-solarized'
 
-"----my bundles here:
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'Raimondi/delimitMate'
+"----team bundles
 Bundle 'bling/vim-airline'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'chriskempson/base16-vim'
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
+Bundle 'kana/vim-textobj-user'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'pangloss/vim-javascript'
+Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'terryma/vim-multiple-cursors'
@@ -80,14 +85,14 @@ set smarttab        " sw at the start of the line, sts everywhere else
 set visualbell
 set nowrap
 
-" set background=light
-" colorscheme solarized
+"#ejs
+au BufNewFile,BufRead *.ejs set filetype=html
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme             = 'bubblegum'
 "let g:airline_enable_branch     = 1
 "let g:airline#extensions#syntastic#enabled = 1
-"let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_x = airline#section#create([""])
 "let g:airline_section_y = airline#section#create([""])
 
@@ -96,11 +101,16 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
+nnoremap <leader>. :CtrlPTag<cr>
 
-" map <C-n> :NERDTreeToggle<CR>
+" nerdtree
+map <C-0> :NERDTreeToggle<CR>
+
+" shortcuts for esc
 :imap jj <Esc>
 :imap jk <Esc>
 
+" tab shortcuts
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
 nnoremap tk  :tabprev<CR>
@@ -128,5 +138,11 @@ noremap <Leader>su :RSunittest
 noremap <Leader>sf :RSfunctionaltest
 
 noremap <Leader>fws :FixWhitespace
+
+" shortcuts for ctags
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+nmap <Leader>b :TagbarToggle<CR>
 
 filetype plugin indent on
