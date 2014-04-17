@@ -80,8 +80,8 @@ set smarttab        " sw at the start of the line, sts everywhere else
 set visualbell
 set nowrap
 
-set background=dark
-colorscheme solarized
+" set background=light
+" colorscheme solarized
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme             = 'bubblegum'
