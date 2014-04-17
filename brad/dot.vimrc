@@ -39,8 +39,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 "----my experimental bundles
-"Bundle 'Lokaltog/vim-easymotion'
-Bundle 'altercation/vim-colors-solarized'
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'altercation/vim-colors-solarized'
 
 "----my bundles here:
 Bundle 'MarcWeber/vim-addon-mw-utils'
