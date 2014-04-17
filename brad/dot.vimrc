@@ -30,7 +30,8 @@ noremap <Leader>vrc :so $MYVIMRC<CR>
 let mapleader = ","
 
 "---- Exclude things from CtrlP and others when searching
-set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*
+set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*,node_modules/*
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -50,11 +51,11 @@ Bundle 'chriskempson/base16-vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
+Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'kana/vim-textobj-user'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'pangloss/vim-javascript'
