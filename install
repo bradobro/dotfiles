@@ -3,11 +3,19 @@
 def main
   user = 'team'
   puts "Installing dotfiles for user '#{user}'."
-#  files = collect_files()
-#  calculate_dests files
+  files = collect_files(user)
 #  unlink_existing files
 #  link_new files
 #  install_tools
+end
+
+def collect_files(user)
+  Dir["#{user}/*"].collect do |source|
+    dest = source
+    dest = source.gsub(/^\w+/,Dir.home())  #rebase to ~
+    dest.gsub!(/dot\./,'.') # transform 'dot.' to '.'
+    {source: source, dest: dest}
+  end
 end
 
 
