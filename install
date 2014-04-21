@@ -1,0 +1,15 @@
+#!/usr/bin/ruby
+
+def main
+  user = 'team'
+  puts "Installing dotfiles for user '#{user}'."
+#  files = collect_files()
+#  calculate_dests files
+#  unlink_existing files
+#  link_new files
+#  install_tools
+end
+
+
+main()
+
