@@ -4,7 +4,7 @@ filetype off
 " set scrolloff=8
 set foldmethod=syntax
 set nofoldenable
-let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_working_path_mode = 'a'
 
 nnoremap <silent> <Space> za
 nnoremap <silent> <F8> zM
