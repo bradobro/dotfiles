@@ -6,24 +6,9 @@ set foldmethod=syntax
 set nofoldenable
 let g:ctrlp_working_path_mode = 'a'
 
-nnoremap <silent> <Space> za
-nnoremap <silent> <F8> zM
-nnoremap <silent> <F9> zR
-"---------resizing splits----------------------------------------------------
-noremap = <esc><C-w>>
-    " = increase size of vertically split window
-noremap - <esc><C-w><
-    " - decrease size of vertically split window
-noremap + <esc><C-w>+
-    " + increase size of horizontally split window
-noremap _ <esc><C-w>-
-    " _ decrease size of horizontally split window
-
-
 noremap <F1> <nop>
 inoremap <F1> <nop>
     " disable the F1 help key because I hit it when trying to hit escape
-
 
 " reload .vimrc
 noremap <Leader>vrc :so $MYVIMRC<CR>
