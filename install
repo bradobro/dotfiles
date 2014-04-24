@@ -13,11 +13,9 @@ end
 
 def collect_files(user)
   Dir["#{user}/*"].collect do |source|
-    source = File.join(Dir.pwd,source)
-    dest = source
-    dest = source.gsub(/^\w+/,Dir.home())  #rebase to ~
+    dest = File.basename(source)
     dest.gsub!(/dot\./,'.') # transform 'dot.' to '.'
-    {source: source, dest: dest}
+    {source: File.join(Dir.pwd,source), dest: File.join(Dir.home,dest)}
   end
 end
 
@@ -25,7 +23,7 @@ def link_new(files)
   clobber = false # overwrite existing?
   files.each do |file|
     begin
-      #puts file
+      puts file
       FileUtils.ln_s file[:source], file[:dest], {force: clobber}
     rescue
       # require 'pry'; binding.pry  
