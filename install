@@ -29,6 +29,8 @@ end
 def link_new(files, options)
   files.each do |file|
     begin
+      # this breaks on .vim/ link if an existing directory of that name exists because of .ln_s behavior
+      # for now, rm  -rf ~/.vim first
       FileUtils.ln_s file[:source], file[:dest], {force: options[:force]}
       puts "  ...symlinking #{file[:source]} to #{file[:dest]}."
     rescue
