@@ -3,28 +3,34 @@
 require 'fileutils'
 
 def main
-  user = 'team'
-  puts "Installing dotfiles for user '#{user}'."
-  files = collect_files(user)
-  link_new files
-#  install_tools
-  puts "Put your git user info in path = ~/.gitconfig_user."
+  options = get_options
+  puts "Installing dotfiles for user '#{options[:user]}'."
+  files = collect_files(options)
+  link_new files, options
+  install_tools options
+  puts "\nIMPORTANT: Put your git user info in path = ~/.gitconfig_user."
+  puts "IMPORTANT: run :BundleInstall in vim."
 end
 
-def collect_files(user)
-  Dir["#{user}/*"].collect do |source|
+def get_options
+  # add optparse if we want this optional
+  result = {user: 'team', force: true}
+  result
+end
+
+def collect_files(options)
+  Dir["#{options[:user]}/*"].collect do |source|
     dest = File.basename(source)
     dest.gsub!(/dot\./,'.') # transform 'dot.' to '.'
     {source: File.join(Dir.pwd,source), dest: File.join(Dir.home,dest)}
   end
 end
 
-def link_new(files)
-  clobber = false # overwrite existing?
+def link_new(files, options)
   files.each do |file|
     begin
-      puts file
-      FileUtils.ln_s file[:source], file[:dest], {force: clobber}
+      FileUtils.ln_s file[:source], file[:dest], {force: options[:force]}
+      puts "  ...symlinking #{file[:source]} to #{file[:dest]}."
     rescue
       # require 'pry'; binding.pry  
       if $!.class == Errno::EEXIST
@@ -37,6 +43,10 @@ def link_new(files)
   end
 end
 
+def install_tools(options)
+  # Clone vundle into place
+  system %Q{test ! -e $PWD/#{options[:user]}/dot.vim/bundle/vundle && cd $PWD/#{options[:user]}/dot.vim/bundle && git clone https://github.com/gmarik/vundle.git}
+end
 
 main()
 
