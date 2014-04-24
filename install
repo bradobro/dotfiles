@@ -1,20 +1,41 @@
 #!/usr/bin/ruby
 
+require 'fileutils'
+
 def main
   user = 'team'
   puts "Installing dotfiles for user '#{user}'."
   files = collect_files(user)
-#  unlink_existing files
-#  link_new files
+  link_new files
 #  install_tools
+  puts "Put your git user info in path = ~/.gitconfig_user."
 end
 
 def collect_files(user)
   Dir["#{user}/*"].collect do |source|
+    source = File.join(Dir.pwd,source)
     dest = source
     dest = source.gsub(/^\w+/,Dir.home())  #rebase to ~
     dest.gsub!(/dot\./,'.') # transform 'dot.' to '.'
     {source: source, dest: dest}
+  end
+end
+
+def link_new(files)
+  clobber = false # overwrite existing?
+  files.each do |file|
+    begin
+      #puts file
+      FileUtils.ln_s file[:source], file[:dest], {force: clobber}
+    rescue
+      # require 'pry'; binding.pry  
+      if $!.class == Errno::EEXIST
+        puts "Destination already exists: #{file[:dest]}. Force with -f to fix."
+        exit 1
+      else
+        raise
+      end
+    end
   end
 end
 
