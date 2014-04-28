@@ -47,6 +47,7 @@ end
 
 def install_tools(options)
   # Clone vundle into place
+  system %Q{test ! -e $HOME/.vim/bundle && mkdir $HOME/.vim/bundle}
   system %Q{test ! -e $HOME/.vim/bundle/Vundle.vim.git && cd $HOME/.vim/bundle && git clone https://github.com/gmarik/Vundle.vim.git}
   system %Q{vim +PluginInstall +qall}
 end
