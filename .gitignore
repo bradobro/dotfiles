@@ -1,0 +1,4 @@
+*.swp
+*.session
+tmp
+*/dot.vim/bundle

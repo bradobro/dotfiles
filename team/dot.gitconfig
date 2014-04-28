@@ -1,0 +1,36 @@
+[include]
+  path = ~/.gitconfig_user
+[alias]
+	st = status
+	ci = commit
+        co = checkout
+        br = branch
+        fe = fetch -v
+	di = diff
+        graph = log --oneline --graph
+	bra = branch -a
+	dino = diff --name-only
+	pruno = remote prune origin
+
+[mergetool "opendiff"]
+	cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED
+
+[mergetool "kdiff3"]
+	cmd = kdiff3 $BASE $LOCAL $REMOTE -o $MERGED
+	trustExitCode = true
+[merge]
+	tool = opendiff
+[color]
+	ui = true
+[core]
+	quotepath = false
+	excludesfile = /Users/brado/.gitignore
+	editor = vim --noplugin
+[push]
+	default = current
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[user]
+	email = bolson@americanbible.org
+	name = bradobro
