@@ -19,11 +19,11 @@ let mapleader = ","
 set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*,node_modules/*
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 "----let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 "----our experimental bundles
 
