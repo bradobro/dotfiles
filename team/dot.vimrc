@@ -17,7 +17,8 @@ let mapleader = ","
 
 "---- Exclude things from CtrlP and others when searching
 set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*,node_modules/*
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" let g:ctrlp_custom_ignore = 'node_modules\|.DS_Store\|.git'
+let g:ctrlp_custom_ignore = 'node_modules\|.DS_Store\|\.git'
 
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
