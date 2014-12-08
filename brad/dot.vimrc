@@ -4,25 +4,11 @@ filetype off
 " set scrolloff=8
 set foldmethod=syntax
 set nofoldenable
-
-nnoremap <silent> <Space> za
-nnoremap <silent> <F8> zM
-nnoremap <silent> <F9> zR
-"---------resizing splits----------------------------------------------------
-noremap = <esc><C-w>>
-    " = increase size of vertically split window
-noremap - <esc><C-w><
-    " - decrease size of vertically split window
-noremap + <esc><C-w>+
-    " + increase size of horizontally split window
-noremap _ <esc><C-w>-
-    " _ decrease size of horizontally split window
-
+let g:ctrlp_working_path_mode = 'a'
 
 noremap <F1> <nop>
 inoremap <F1> <nop>
     " disable the F1 help key because I hit it when trying to hit escape
-
 
 " reload .vimrc
 noremap <Leader>vrc :so $MYVIMRC<CR>
@@ -31,13 +17,13 @@ let mapleader = ","
 
 "---- Exclude things from CtrlP and others when searching
 set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*,node_modules/*
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|.DS_Store\|\.git'
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 "----let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 "----our experimental bundles
 
