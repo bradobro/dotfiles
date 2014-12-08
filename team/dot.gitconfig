@@ -1,11 +1,13 @@
+[include]
+  path = ~/.gitconfig_user
 [alias]
 	st = status
 	ci = commit
-  co = checkout
-  br = branch
-  fe = fetch -v
+        co = checkout
+        br = branch
+        fe = fetch -v
 	di = diff
-  graph = log --oneline --graph
+        graph = log --oneline --graph
 	bra = branch -a
 	dino = diff --name-only
 	pruno = remote prune origin
@@ -22,7 +24,13 @@
 	ui = true
 [core]
 	quotepath = false
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/brado/.gitignore
 	editor = vim --noplugin
 [push]
 	default = current
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[user]
+	email = bolson@americanbible.org
+	name = bradobro

@@ -1,28 +1,47 @@
 set nocompatible
 filetype off
 
+" set scrolloff=8
+set foldmethod=syntax
+set nofoldenable
+let g:ctrlp_working_path_mode = 'a'
+
+noremap <F1> <nop>
+inoremap <F1> <nop>
+    " disable the F1 help key because I hit it when trying to hit escape
+
+" reload .vimrc
+noremap <Leader>vrc :so $MYVIMRC<CR>
 
 let mapleader = ","
-" reload .vimrc
-map <Leader>vrc :so $MYVIMRC<CR>
 
-"---- set up vundle
-set rtp+=~/.vim/bundle/vundle/
+"---- Exclude things from CtrlP and others when searching
+set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*,node_modules/*
+let g:ctrlp_custom_ignore = 'node_modules\|.DS_Store\|\.git'
+
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
-Bundle 'gmarik/vundle'
 
-"----my bundles here:
+"----let Vundle manage Vundle
+Bundle 'gmarik/Vundle.vim'
+
+"----our experimental bundles
+
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'altercation/vim-colors-solarized'
+
+"----team bundles
 Bundle 'bling/vim-airline'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'chriskempson/base16-vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
+Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'kana/vim-textobj-user'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'pangloss/vim-javascript'
@@ -36,24 +55,23 @@ Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rails'
-" Bundle 'tpope/vim-rbenv'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-ruby/vim-ruby'
 
-set autoindent
-set expandtab
-set nowrap
-set number
+set t_Co=256
+
+set tabstop=2
 set shiftwidth=2
+set expandtab
+set number
 set showcmd
+set autoindent
 set smartcase       " Case insensitive searches become sensitive with capitals
 set smarttab        " sw at the start of the line, sts everywhere else
-set t_Co=256
-set tabstop=2
 set visualbell
-set wildignore+=doc/*,*.swp,*.zip,log/*,tmp/*,.git/*
- 
+set nowrap
+
 "#ejs
 au BufNewFile,BufRead *.ejs set filetype=html
 
@@ -61,7 +79,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme             = 'bubblegum'
 "let g:airline_enable_branch     = 1
 "let g:airline#extensions#syntastic#enabled = 1
-"let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_x = airline#section#create([""])
 "let g:airline_section_y = airline#section#create([""])
 
@@ -90,29 +108,28 @@ nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
 " Leader shortcuts for Rails commands
-map <Leader>m :Rmodel 
-map <Leader>c :Rcontroller 
-map <Leader>v :Rview 
-map <Leader>u :Runittest 
-map <Leader>f :Rfunctionaltest 
-map <Leader>tm :RTmodel 
-map <Leader>tc :RTcontroller 
-map <Leader>tv :RTview 
-map <Leader>tu :RTunittest 
-map <Leader>tf :RTfunctionaltest 
-map <Leader>sm :RSmodel 
-map <Leader>sc :RScontroller 
-map <Leader>sv :RSview 
-map <Leader>su :RSunittest 
-map <Leader>sf :RSfunctionaltest 
+noremap <Leader>m :Rmodel
+noremap <Leader>c :Rcontroller
+noremap <Leader>v :Rview
+noremap <Leader>u :Runittest
+noremap <Leader>f :Rfunctionaltest
+noremap <Leader>tm :RTmodel
+noremap <Leader>tc :RTcontroller
+noremap <Leader>tv :RTview
+noremap <Leader>tu :RTunittest
+noremap <Leader>tf :RTfunctionaltest
+noremap <Leader>sm :RSmodel
+noremap <Leader>sc :RScontroller
+noremap <Leader>sv :RSview
+noremap <Leader>su :RSunittest
+noremap <Leader>sf :RSfunctionaltest
+
+noremap <Leader>fws :FixWhitespace
 
 " shortcuts for ctags
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 nmap <Leader>b :TagbarToggle<CR>
-
-"autocmd FileType javascript inoremap {<CR> {<CR>}<Esc><S-o>
-"autocmd FileType javascript inoremap (; ();<Esc>hi
 
 filetype plugin indent on

@@ -1,0 +1,56 @@
+#!/usr/bin/ruby
+
+require 'fileutils'
+
+def main
+  options = get_options
+  puts "Installing dotfiles for user '#{options[:user]}'."
+  files = collect_files(options)
+  link_new files, options
+  install_tools options
+  puts "\nIMPORTANT: Put your git user info in path = ~/.gitconfig_user."
+  puts "IMPORTANT: run :BundleInstall in vim."
+end
+
+def get_options
+  # add optparse if we want this optional
+  result = {user: 'team', force: true}
+  result
+end
+
+def collect_files(options)
+  Dir["#{options[:user]}/*"].collect do |source|
+    dest = File.basename(source)
+    dest.gsub!(/dot\./,'.') # transform 'dot.' to '.'
+    {source: File.join(Dir.pwd,source), dest: File.join(Dir.home,dest)}
+  end
+end
+
+def link_new(files, options)
+  files.each do |file|
+    begin
+      # this breaks on .vim/ link if an existing directory of that name exists because of .ln_s behavior
+      # for now, rm  -rf ~/.vim first
+      FileUtils.ln_s file[:source], file[:dest], {force: options[:force]}
+      puts "  ...symlinking #{file[:source]} to #{file[:dest]}."
+    rescue
+      # require 'pry'; binding.pry  
+      if $!.class == Errno::EEXIST
+        puts "Destination already exists: #{file[:dest]}. Force with -f to fix."
+        exit 1
+      else
+        raise
+      end
+    end
+  end
+end
+
+def install_tools(options)
+  # Clone vundle into place
+  system %Q{test ! -e $HOME/.vim/bundle && mkdir $HOME/.vim/bundle}
+  system %Q{test ! -e $HOME/.vim/bundle/Vundle.vim.git && cd $HOME/.vim/bundle && git clone https://github.com/gmarik/Vundle.vim.git}
+  system %Q{vim +PluginInstall +qall}
+end
+
+main()
+
