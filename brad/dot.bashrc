@@ -28,6 +28,10 @@ export LC_CTYPE=UTF-8
 
 source ~/aliases.txt
 
+export WORKON_HOME=$HOME/virtualenvs
+export PROJECT_HOME=$HOME/git
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.nvm/nvm.sh" ]] && . "$HOME/.nvm/nvm.sh" # This loads nvm
+[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && . /usr/local/bin/virtualenvwrapper.sh # This loads nvm
 
