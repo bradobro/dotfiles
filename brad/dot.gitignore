@@ -1,2 +1,4 @@
 .idea
 *.swp
+SECRETS*
+.DS_Store
