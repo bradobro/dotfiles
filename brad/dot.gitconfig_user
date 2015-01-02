@@ -1,3 +1,5 @@
 [user]
 	name = Brad Olson
 	email = brad.olson@movedbylight.com
+[url "git@github.com:"]
+	insteadOf = https://github.com/

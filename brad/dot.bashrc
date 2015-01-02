@@ -35,4 +35,4 @@ export PROJECT_HOME=$HOME/git
 [[ -s "$HOME/.nvm/nvm.sh" ]] && . "$HOME/.nvm/nvm.sh" # This loads nvm
 [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && . /usr/local/bin/virtualenvwrapper.sh # This loads nvm
 
-source .bashrc_local
+source ~/.bashrc_local
