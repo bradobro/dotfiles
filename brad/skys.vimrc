@@ -1,6 +1,7 @@
 " to use this vimrc, copy it to ~/.vimrc
 " (make sure to back your's up if you want to save it first)
 " in case you haven't noticed, " is the comment character in vim config files
+" to extend it, see https://vimways.org/2018/debugging-your-vim-config/
 
 "---------Vundle options----------------------------------------------------
 "Vundle options, requires having vundle installed in ~/.vim/bundle/vundle
@@ -75,6 +76,10 @@ let g:polyglot_disabled = ['markdown']
 
 "Plugin 'pangloss/vim-javascript'
     " Javascript syntax and folding
+
+"Plugin 'dense-analysis/ale'
+    " Language Server Protocol support. For languages supported:
+    " https://github.com/dense-analysis/ale/blob/master/supported-tools.md
 
 "Plugin 'mattn/emmet-vim'
     " high speed HTML and css editing
