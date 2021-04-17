@@ -1,5 +1,4 @@
-" to use this vimrc, copy it to ~/.vimrc
-" (make sure to back your's up if you want to save it first)
+" to use this vimrc, copy it to ~/.vimrc (make sure to back your's up if you want to save it first)
 " in case you haven't noticed, " is the comment character in vim config files
 " to extend it, see https://vimways.org/2018/debugging-your-vim-config/
 
@@ -11,8 +10,8 @@ set nomodeline "Turn off parsing vim settings out of files you open (security vu
 set laststatus=2 "make status line always display
 set nobackup "testing if this reduces instances of lag
 filetype off
-"let mapleader = ","
-noremap <Leader>vrc :so ~/.vimrc<CR>
+let mapleader = ","
+noremap <Leader>vrc :so ~/.vimrc<CRc
 
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
@@ -22,21 +21,21 @@ Plugin 'gmarik/Vundle.vim'
 
 " Load bundles here, it default loads from github, but can specify specifics
 
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'terryma/vim-multiple-cursors'
     " Multiple cursors
     " try the function :MultipleCursorsFind (works like /s)
     " https://github.com/terryma/vim-multiple-cursors
 
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
     " fuzzy filename finder
     " Run :CtrlP to enter CtrlP file finding mode
     " :h ctrlp-mappings in normal mode or just ? in CtrlP mode for help
     " https://github.com/kien/ctrlp.vim
-let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](build|bld|dep|bin|logs|swig|install|node_modules|targets|dist|mavsdk)$',
-    \ }
+" let g:ctrlp_custom_ignore = {
+    " \ 'dir': '\v[\/](build|bld|dep|bin|logs|swig|install|node_modules|targets|dist|mavsdk)$',
+    " \ }
 
-Plugin 'msanders/snipmate.vim'
+" Plugin 'msanders/snipmate.vim'
     " Code snippet completion
     " Start typing standard things and let tab completion do the rest
     " <C-r>\t to get a menu with available snippets
@@ -44,7 +43,7 @@ Plugin 'msanders/snipmate.vim'
     " Look in ~/.vim/bundle/snipmate.vim/snippets to see expansions
     " https://github.com/msanders/snipmate.vim
 
-Plugin 'Lokaltog/vim-easymotion'
+" Plugin 'Lokaltog/vim-easymotion'
     " Easy large movement
     " press \\w then type the highlighted letters to jump anywhere
     " also works with other motion cmds like e, b, f{char}
@@ -64,9 +63,9 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'hut8labs/diffscuss', {'rtp': 'diffscuss.vim/'}
     " diff based code comments and reviews
 
-Plugin 'sheerun/vim-polyglot'
+" Plugin 'sheerun/vim-polyglot'
     " Multi-language support
-let g:polyglot_disabled = ['markdown']
+" let g:polyglot_disabled = ['markdown']
 
 "Plugin 'fatih/vim-go'
     " GoLang support
@@ -82,6 +81,43 @@ let g:polyglot_disabled = ['markdown']
     " https://github.com/dense-analysis/ale/blob/master/supported-tools.md
 
 Plugin 'neoclide/coc.nvim'
+
+" Give more space for displaying messages.
+set cmdheight=2
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 
 "Plugin 'mattn/emmet-vim'
     " high speed HTML and css editing
