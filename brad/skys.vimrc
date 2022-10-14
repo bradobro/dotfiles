@@ -81,8 +81,6 @@ let g:polyglot_disabled = ['markdown']
     " Language Server Protocol support. For languages supported:
     " https://github.com/dense-analysis/ale/blob/master/supported-tools.md
 
-Plugin 'neoclide/coc.nvim'
-
 "Plugin 'mattn/emmet-vim'
     " high speed HTML and css editing
     " seems to kinda suck ...
